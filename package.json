@@ -1,6 +1,6 @@
 {
   "name": "fuqueue",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Kung Fu Job Queue",
   "main": "index.js",
   "scripts": {
