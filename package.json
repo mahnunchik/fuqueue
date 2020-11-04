@@ -1,11 +1,12 @@
 {
   "name": "fuqueue",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Kung Fu Job Queue",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint",
-    "test": "jest"
+    "lint": "eslint lib/",
+    "test": "jest --runInBand",
+    "coverage": "jest --runInBand --coverage"
   },
   "repository": {
     "type": "git",
@@ -21,15 +22,63 @@
     "url": "https://github.com/mahnunchik/fuqueue/issues"
   },
   "homepage": "https://github.com/mahnunchik/fuqueue#readme",
+  "dependencies": {
+    "mongodb": "^3.6.2",
+    "uuid": "^8.3.1"
+  },
   "devDependencies": {
-    "eslint": "^7.2.0",
+    "eslint": "^7.12.1",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.1.0",
     "jest": "^26.6.1"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "lib/*.js",
+      "!lib/utils.js"
+    ]
   },
   "eslintConfig": {
     "extends": [
       "airbnb-base"
+    ],
+    "parserOptions": {
+      "sourceType": "script"
+    },
+    "rules": {
+      "no-console": "off",
+      "no-plusplus": "off",
+      "strict": [
+        "error",
+        "global"
+      ],
+      "no-underscore-dangle": [
+        "error",
+        {
+          "allowAfterThis": true
+        }
+      ]
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.test.js"
+        ],
+        "env": {
+          "jest/globals": true
+        },
+        "plugins": [
+          "jest"
+        ],
+        "rules": {
+          "jest/no-disabled-tests": "warn",
+          "jest/no-focused-tests": "error",
+          "jest/no-identical-title": "error",
+          "jest/prefer-to-have-length": "warn",
+          "jest/valid-expect": "error"
+        }
+      }
     ]
   }
 }
